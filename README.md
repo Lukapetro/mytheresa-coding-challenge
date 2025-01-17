@@ -1,79 +1,190 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# MyTheresa Movie App
 
-# Getting Started
+A React Native mobile application for browsing movies, with features like wishlisting, categorized views, and detailed movie information.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## Prerequisites
 
-## Step 1: Start the Metro Server
+Before you begin, ensure you have the following installed:
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+- Node.js (v18 or higher)
+- pnpm (v8 or higher)
+- Xcode (for iOS development, Mac only)
+- Android Studio (for Android development)
+- iOS Simulator or Android Emulator
+- [React Native development environment](https://reactnative.dev/docs/environment-setup)
 
-To start Metro, run the following command from the _root_ of your React Native project:
+## Environment Setup
 
-```bash
-# using npm
-npm start
-
-# OR using Yarn
-yarn start
-```
-
-## Step 2: Start your Application
-
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
+1. Clone the repository:
 
 ```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
+git clone <repository-url>
+cd mytheresa
 ```
 
-### For iOS
+2. Install dependencies using pnpm:
 
 ```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
+pnpm install
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+3. Create a `.env` file in the root directory with the following variables:
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+```env
+TMDB_API_KEY=your_tmdb_api_key
+API_BASE_URL=https://api.themoviedb.org/3
+```
 
-## Step 3: Modifying your App
+> Note: You'll need to obtain an API key from [The Movie Database (TMDB)](https://www.themoviedb.org/documentation/api)
 
-Now that you have successfully run the app, let's modify it.
+## Running the App
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+### iOS
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+1. Install iOS dependencies:
 
-## Congratulations! :tada:
+```bash
+cd ios
+pod install
+cd ..
+```
 
-You've successfully run and modified your React Native App. :partying_face:
+2. Start the Metro bundler:
 
-### Now what?
+```bash
+pnpm start
+```
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+3. Run the iOS app:
 
-# Troubleshooting
+```bash
+# For iPhone simulator
+pnpm ios
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+# For specific iPhone simulator
+pnpm ios --simulator="iPhone 14 Pro"
+```
 
-# Learn More
+### Android
 
-To learn more about React Native, take a look at the following resources:
+1. Start an Android emulator from Android Studio or connect a physical device
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+2. Start the Metro bundler:
+
+```bash
+pnpm start
+```
+
+3. Run the Android app:
+
+```bash
+pnpm android
+```
+
+## Project Structure
+
+```
+src/
+├── components/     # Reusable UI components
+├── hooks/         # Custom React hooks
+├── navigation/    # Navigation configuration
+├── screens/       # Screen components
+├── services/      # API services
+├── theme/         # Theme configuration
+└── types/         # TypeScript type definitions
+```
+
+## Features
+
+- Browse movies by categories (Now Playing, Popular, Top Rated)
+- View detailed movie information
+- Add/remove movies to/from wishlist
+- Persistent wishlist storage
+- Category-specific styling
+- Smooth animations and transitions
+- Responsive design
+
+## Development
+
+### Code Style
+
+The project uses ESLint and Prettier for code formatting. Run the following commands:
+
+```bash
+# Lint check
+pnpm lint
+
+# Format code
+pnpm format
+```
+
+### Type Checking
+
+```bash
+pnpm typecheck
+```
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Metro bundler issues**
+
+   - Clear Metro cache:
+
+     ```bash
+     pnpm start --reset-cache
+     ```
+
+2. **iOS build fails**
+
+   - Clean iOS build:
+
+     ```bash
+     cd ios
+     xcodebuild clean
+     pod install
+     cd ..
+     ```
+
+3. **Android build fails**
+
+   - Clean Android build:
+
+     ```bash
+     cd android
+     ./gradlew clean
+     cd ..
+     ```
+
+4. **Environment variables not working**
+   - Ensure `.env` file exists
+   - Rebuild the app after modifying `.env`
+
+### Still Having Issues?
+
+1. Make sure all dependencies are correctly installed:
+
+```bash
+pnpm install
+```
+
+2. Reset all caches:
+
+```bash
+# Remove node_modules
+rm -rf node_modules
+# Remove pnpm store
+pnpm store prune
+# Reinstall dependencies
+pnpm install
+```
+
+3. For iOS specific issues:
+
+```bash
+cd ios
+pod deintegrate
+pod install
+cd ..
+```
