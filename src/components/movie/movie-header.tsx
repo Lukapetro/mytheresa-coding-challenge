@@ -20,6 +20,7 @@ export const MovieHeader = memo(
     return (
       <HeaderContainer>
         <BackdropImage
+          testID="backdrop-image"
           source={{
             uri: `https://image.tmdb.org/t/p/w780${backdropPath}`,
             priority: FastImage.priority.high,
@@ -27,6 +28,7 @@ export const MovieHeader = memo(
           resizeMode={FastImage.resizeMode.cover}
         />
         <Gradient
+          testID="header-gradient"
           colors={['transparent', style.backgroundColor]}
           locations={[0, 1]}
         />
